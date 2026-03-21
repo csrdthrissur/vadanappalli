@@ -8,6 +8,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
+		<link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet-search.css">
@@ -47,6 +48,7 @@
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/L.Control.Layers.Tree.min.js"></script>
+		<script src="js/L.Control.Locate.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -86,7 +88,7 @@
             zoomControl:false, maxZoom:28, minZoom:1
         })
         var hash = new L.Hash(map);
-		 var hash = new L.Hash(map);
+		 
 		var labelsLayer = new L.layerGroup();
 		var labelsVisible = false; // Track the visibility state of labels
 		 // Function to create labels for each Node and add them to the labelsLayer
@@ -201,6 +203,7 @@
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);
+	    L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
             if (bounds_group.getLayers().length) {
