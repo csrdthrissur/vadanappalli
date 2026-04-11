@@ -2284,7 +2284,8 @@ binocularsIcon.parentNode.appendChild(textBox);
             };
             div_road_ward.appendChild(reset_road_ward);
 			var adminPassword = "1234"; // change this to your password
-			function checkPassword() {
+
+function checkPassword() {
     var entered = prompt("Enter password to perform this action:");
     if (entered === adminPassword) {
         return true;
@@ -2312,6 +2313,7 @@ map.addControl(drawControl); // ✅ Add control to map
 
 // Event listener for when a shape is created
 map.on(L.Draw.Event.CREATED, function (event) {
+ if (!checkPassword()) return; 
     var layer = event.layer;
     drawnItems.addLayer(layer);
 
@@ -2367,6 +2369,7 @@ function generatePopupContent(layer) {
 
 // Function to edit a layer
 function editLayer(layerId) {
+ if (!checkPassword()) return;
     var layer = drawnItems.getLayer(layerId);
     if (layer) {
         layer.editing.enable();
@@ -2392,6 +2395,7 @@ function editLayer(layerId) {
 
 // Function to delete a layer
 function deleteLayer(layerId) {
+if (!checkPassword()) return; 
     var layer = drawnItems.getLayer(layerId);
     if (layer) {
         if (confirm('Are you sure you want to delete this layer?')) {
